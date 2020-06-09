@@ -1,0 +1,115 @@
+<div class="page-area">
+  <div class="text-center">
+    <h2>Buy Products</h2>
+  </div>
+</div>
+<div
+  class="alert alert-light border align-items-center col-md-12"
+  *ngIf="
+    addedProduct && (countShirt > 0 || countTshirt > 0 || countTrouser > 0)
+  "
+>
+  <!-- 
+<div class="alert alert-light border align-items-center col-md-12"> -->
+  <div class="my-2">
+    <strong class="text-success"> {{ addedProduct }} </strong> &nbsp; is
+    Selected and added to Cart
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center">
+        <h2>Display Component</h2>
+      </div>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <td>Product Name</td>
+            <td>Quantity</td>
+            <td>Add</td>
+            <td>Remove</td>
+            <td>Delete</td>
+          </tr>
+          <tr *ngFor="let product of tshirt; index as i">
+            <td>{{ product }}</td>
+            <td>{{ countTshirt }}</td>
+            <td><button class="btn" (click)="onAddTshirt()">Add</button></td>
+            <td>
+              <button class="btn" (click)="onRemoveTshirt(i)">Remove</button>
+            </td>
+            <td>
+              <button class="btn" (click)="onDeleteTshirt(i)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngFor="let product of shirt; index as i">
+            <td>{{ product }}</td>
+            <td>{{ countShirt }}</td>
+            <td><button class="btn" (click)="onAddShirt()">Add</button></td>
+            <td>
+              <button class="btn" (click)="onRemoveShirt(i)">Remove</button>
+            </td>
+            <td>
+              <button class="btn" (click)="onDeleteShirt(i)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngFor="let product of trouser; index as i">
+            <td>{{ product }}</td>
+            <td>{{ countTrouser }}</td>
+            <td>
+              <button class="btn" (click)="onAddTrouser()">Add</button>
+            </td>
+            <td>
+              <button class="btn" (click)="onRemoveTrouser(i)">Remove</button>
+            </td>
+            <td>
+              <button class="btn" (click)="onDeleteTrouser(i)">Delete</button>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="col-md-12 d-flex justify-content-center text-center">
+      <button class="btn btn-success ml-auto" (click)="checkout()">
+        Checkout
+      </button>
+    </div>
+  </div>
+</div>
+<hr class="mb-3" />
+<div class="row">
+  <div class="col-md-12 text-center">
+    <div class="card" style="width: 18rem;">
+      <img src="../../assets/tshirt.jpg" class="card-img-top" alt="tshirt" />
+      <div class="card-body">
+        <h5 class="card-title">T-shirt</h5>
+        <button class="btn btn-success" (click)="onSelectProduct('tshirt')">
+          Select this Product
+        </button>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <img src="../../assets/shirt.jpg" class="card-img-top" alt="shirt" />
+      <div class="card-body">
+        <h5 class="card-title">Shirt</h5>
+        <button class="btn btn-success" (click)="onSelectProduct('shirt')">
+          Select this Product
+        </button>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <img src="../../assets/trouser.jpg" class="card-img-top" alt="trouser" />
+      <div class="card-body">
+        <h5 class="card-title">Trouser</h5>
+        <button class="btn btn-success" (click)="onSelectProduct('trouser')">
+          Select this Product
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <app-child
+    class="w-100"
+    [productSelected]="proSelected"
+    [selectedProduct]="selProduct"
+    (addedProduct)="onAddedProduct($event)"
+  ></app-child>
+</div>
